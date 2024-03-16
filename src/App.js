@@ -1,25 +1,83 @@
-import logo from './logo.svg';
-import './App.css';
+
+// import React, { useState } from 'react';
+// import Select from 'react-select';
+// import makeAnimated from 'react-select/animated';
+// const animatedComponents = makeAnimated();
+// const option=[
+//   {value:'name1',label:'sushant'},
+//   {value:'name2',label:'ali'},
+//   {value:'name3',label:'satyam'},
+//   {value:'name4',label:'kshitish'}
+  
+// ]
+
+// function App() {
+//   const [selectedValues,setselectedValues]=useState([]);
+//   const changeHandler = (variable)=>{
+//     // console.log(variable);
+//     setselectedValues(variable);
+//     console.log(selectedValues);
+//   }
+//   return (
+//     <div className="App">
+//         <Select options={option} 
+//         isMulti      
+//         components={animatedComponents}
+//         value={selectedValues}
+//         onChange={changeHandler}
+
+//         />
+      
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+
+
+
+
+import React, { useState } from 'react';
+import Select from 'react-select';
+import makeAnimated from 'react-select/animated';
+const animatedComponents = makeAnimated();
+const option = [
+  {value:'name1',label:'sushant'},
+  {value:'name2',label:'ali'},
+  {value:'name3',label:'satyam'},
+  {value:'name4',label:'kshitish'}
+];
 
 function App() {
+  const [selectedValues, setSelectedValues] = useState([]);
+
+  const handleSelectChange = (selectedOptions) => {
+    setSelectedValues(selectedOptions);
+    console.log(selectedValues);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Select
+        options={option} 
+        isMulti
+        components={animatedComponents}
+        onChange={handleSelectChange}
+        value={selectedValues}
+      />
+      
+      <div>
+        Selected Values:
+        {selectedValues.map((item) => (
+          <div key={item.value}>{item.label+" "+selectedValues.length}</div>
+        ))}
+      </div>
     </div>
   );
 }
 
 export default App;
+
+
